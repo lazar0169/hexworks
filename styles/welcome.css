@@ -1,0 +1,13 @@
+#welcome {
+    color: white;
+    font-size: 3vw;
+    font-family: consolas;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#welcome>img {
+    margin-top: 15px;
+    width: 64px;
+}
