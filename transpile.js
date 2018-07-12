@@ -1,14 +1,15 @@
 'use strict';
+console.log('--- STARTED: ');
+
 let fs = require('fs');
 var path = require('path');
+const { JSDOM } = require("jsdom");
 var maper = JSON.parse(fs.readFileSync('maper.json', 'utf8'));
-let objects = getFiles('objects');
+let objects = merge(getFiles('objects'), true);
 let views = fs.readdirSync('views');
 let core = getFiles('core');
 
 let buildFolder = 'bin';
-
-console.log('--- STARTED: ');
 
 if (!fs.existsSync(buildFolder)) {
     removeFolder(buildFolder);
@@ -20,12 +21,22 @@ if (!fs.existsSync(buildFolder)) {
 for (let view of views) {
     if (view.split('.')[1] !== 'html') continue;
     view = view.split('.')[0];
-    let js = merge(objects, true) + merge(core),
+    let js = merge(core),
         css = '',
         styles = maper.styles[view].map(path => `./styles/${path}`),
         scripts = maper.scripts[view].map(path => `./scripts/${path}`);
 
-    fs.copyFileSync(`./views/${view}.html`, `./${buildFolder}/${view}.html`);
+
+    let document = new JSDOM(fs.readFileSync(`./views/${view}.html`)).window.document;
+    let head = document.head;
+    let body = document.body;
+    for (let object of document.getElementsByTagName('object')) {
+        let objectName = object.dataset.object;
+        object.insertAdjacentHTML('beforebegin', objects[objectName]);
+        object.remove();
+    }
+
+    fs.writeFileSync(`./${buildFolder}/${view}.html`, `<html><head>${head.innerHTML}</head><body>${body.innerHTML}</body></html>`);
 
     try {
         js += merge(scripts);
@@ -45,7 +56,7 @@ copyDir('fonts', `${buildFolder}/fonts`);
 copyDir('vendor', `${buildFolder}/vendor`);
 try {
 } catch (error) {
-    console.log('Error: Copying failed! Please check resource (images, fonts, vendor)');    
+    console.log('Error: Copying failed! Please check resource (images, fonts, vendor)');
 }
 
 console.log('--- DONE!');
@@ -60,7 +71,7 @@ function merge(dirArray, isObject = false) {
             code += fs.readFileSync(`${dirArray[i]}`, 'utf8') + '\r';
         }
     }
-    if (isObject) code += `var externalObjects=${JSON.stringify(objects)};` + '\r';
+    if (isObject) code = objects;
     return code;
 }
 
