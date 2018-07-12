@@ -1,14 +1,26 @@
 {
     "scripts": {
         "index": [
-            "index.js",
-            "welcome.js"
+            "autoplay.js",
+            "help-screen-values.js",
+            "help-screen.js",
+            "helpers.js",
+            "ios.js",
+            "loading.js",
+            "responsive-display.js",
+            "temp-help.js",
+            "ui.js"
         ]
     },
     "styles": {
         "index": [
-            "index.css",
-            "welcome.css"
+            "autoplay.css",
+            "controls.css",
+            "help-screen.css",
+            "loading.css",
+            "main.css",
+            "portrait.css",
+            "gamble.css"
         ]
     }
 }

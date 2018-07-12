@@ -1,0 +1,59 @@
+<div id="autoplay" class="hidden">
+    <div id="autoplay-wrapper">
+        <div id="background"></div>
+        <div id="nor-title">Number of rounds</div>
+        <div id="auto-play-games-wrapper">
+            <div id="auto-play-games-decrease" class="button">
+                <i class="mdi mdi-minus"></i>
+            </div>
+            <div id="auto-play-games-number">50</div>
+            <div id="auto-play-games-increase" class="button">
+                <i class="mdi mdi-plus"></i>
+            </div>
+        </div>
+        <div id="auto-play-quick-wrapper">
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-quick">
+                <label id="quick-auto" for="auto-play-rules-quick">Quick Auto Play</label>
+            </div>
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-bonus">
+                <label id="dont-stop-bonus" for="auto-play-rules-bonus">Don't stop in bonus</label>
+            </div>
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-jackpot">
+                <label id="dont-stop-jackpot" for="auto-play-rules-jackpot">Don't stop on jackpot</label>
+            </div>
+        </div>
+        <div id="auto-play-rules-wrapper">
+            <div id="sap-title">Stop auto play</div>
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-any-win-stop">
+                <label id="any-win" for="auto-play-rules-any-win-stop">On any win</label>
+            </div>
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-win-stop" data-range="range-win-stop-value">
+                <label id="win-exceeds" for="auto-play-rules-win-stop">If single win exceeds</label>
+                <input type="range" id="range-win-stop-value" value="0" step="0.01" min="0.01" max="1000.00" disabled=true>
+                <span class="slider-value">-</span>
+            </div>
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-credits-win-stop" data-range="range-credits-stop-value">
+                <label id="credits-increase" for="auto-play-rules-credits-win-stop">If credits increase by</label>
+                <input type="range" id="range-credits-stop-value" value="0" step="0.01" min="0.01" max="1000.00" disabled=true>
+                <span class="slider-value">-</span>
+            </div>
+            <div class="auto-play-elements-wrapper">
+                <input type="checkbox" id="auto-play-rules-credits-lose-stop" data-range="range-credits-lose-stop-value">
+                <label id="credits-decrease" for="auto-play-rules-credits-lose-stop">If credits decrease by</label>
+                <input type="range" id="range-credits-lose-stop-value" value="0" step="0.01" min="0.01" max="1000.00" disabled=true>
+                <span class="slider-value">-</span>
+            </div>
+        </div>
+        <div id="auto-play-buttons">
+            <div id="auto-play-start-button" class="button">START</div>
+            <div id="auto-play-reset-button" class="button">RESET</div>
+            <div id="auto-play-close-button" class="button">CLOSE</div>
+        </div>
+    </div>
+</div>

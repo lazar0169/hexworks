@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'roboto';
+    src: url('../fonts/roboto.ttf') format('truetype');
+}
+
+body {
+    font-family: 'roboto', sans-serif;
+    background-color: black;
+    margin: 0;
+}
+
+#game-section {
+    background-image: url("../images/main-background.png");
+    background-size: cover;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#game-window {
+    position: fixed;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #004677;
+}
+
+#game-section,
+#main-game,
+#modal,
+#forms,
+#bonus,
+#loading,
+#ios-swipe {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#forms,
+#bonus,
+#modal,
+#loading {
+    pointer-events: none;
+}
+
+#forms *,
+#bonus *,
+#modal * {
+    pointer-events: all;
+}
+
+#ios-swipe {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000c9;
+}
+
+#preloaders {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.blur {
+    filter: blur(10px);
+}
+
+.button {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.36) -1px -1px 0px, rgba(0, 0, 0, 0.36) 1px -1px 0px, rgba(0, 0, 0, 0.36) -1px 1px 0px, rgba(0, 0, 0, 0.36) 1px 1px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.button:active {
+    background: rgba(255, 255, 255, 0.616);
+    transform: scale3d(0.9, 0.9, 0.9);
+}

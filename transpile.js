@@ -30,10 +30,15 @@ for (let view of views) {
     let document = new JSDOM(fs.readFileSync(`./views/${view}.html`)).window.document;
     let head = document.head;
     let body = document.body;
-    for (let object of document.getElementsByTagName('object')) {
+    let objectElements = document.getElementsByTagName('object');
+    for (let object of objectElements) {
         let objectName = object.dataset.object;
         object.insertAdjacentHTML('beforebegin', objects[objectName]);
-        object.remove();
+        // object.remove();
+    }
+
+    while (document.getElementsByTagName('object').length === 0) {
+        document.getElementsByTagName('object')[0].remove();
     }
 
     fs.writeFileSync(`./${buildFolder}/${view}.html`, `<html><head>${head.innerHTML}</head><body>${body.innerHTML}</body></html>`);
