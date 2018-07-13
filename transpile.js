@@ -8,11 +8,11 @@ var maper = JSON.parse(fs.readFileSync('maper.json', 'utf8'));
 let objects = merge(getFiles('objects'), true);
 let views = fs.readdirSync('views');
 let core = getFiles('core');
+let vendorSafe = isVendorSafe(getFiles('vendor'));
 
 let buildFolder = 'bin';
 
 if (!fs.existsSync(buildFolder)) {
-    removeFolder(buildFolder);
     fs.mkdirSync(`./${buildFolder}`);
     fs.mkdirSync(`./${buildFolder}/js`);
     fs.mkdirSync(`./${buildFolder}/css`);
@@ -36,7 +36,17 @@ for (let view of views) {
         object.remove();
     }
 
-    fs.writeFileSync(`./${buildFolder}/${view}.html`, `<html><head>${head.innerHTML}</head><body>${body.innerHTML}</body></html>`);
+    fs.writeFileSync(`./${buildFolder}/${view}.html`,
+        `<html>
+            <head>
+                ${head.innerHTML}
+                <link rel="stylesheet" href="css/${view}.css">
+            </head>
+            <body>
+                ${body.innerHTML}
+                <script src="js/${view}.js" ${vendorSafe ? 'async' : 'defer'}></script>
+            </body>
+        </html>`);
 
     try {
         js += merge(scripts);
@@ -51,15 +61,24 @@ for (let view of views) {
     console.log(`> ${view}`);
 }
 
-copyDir('images', `${buildFolder}/images`);
-copyDir('fonts', `${buildFolder}/fonts`);
-copyDir('vendor', `${buildFolder}/vendor`);
 try {
+    copyDir('images', `${buildFolder}/images`);
+    copyDir('fonts', `${buildFolder}/fonts`);
+    copyDir('vendor', `${buildFolder}/vendor`);
 } catch (error) {
     console.log('Error: Copying failed! Please check resource (images, fonts, vendor)');
 }
 
 console.log('--- DONE!');
+
+function isVendorSafe(vendor) {
+    for (let item of vendor) {
+        if (item.includes('.js')) {
+            return false;
+        }
+    }
+    return true;
+}
 
 function merge(dirArray, isObject = false) {
     let code = '', objects = {};
