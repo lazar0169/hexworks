@@ -1,12 +1,12 @@
 'use strict';
 console.log('--- STARTED: ');
 
-let fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 const { JSDOM } = require("jsdom");
-var pretty = require('pretty');
+const pretty = require('pretty');
 
-var maper = JSON.parse(fs.readFileSync('maper.json', 'utf8'));
+let maper = JSON.parse(fs.readFileSync('maper.json', 'utf8'));
 let objects = merge(getFiles('objects'), true);
 let views = fs.readdirSync('views');
 let core = getFiles('core');
@@ -28,11 +28,10 @@ for (let view of views) {
         styles = maper.styles[view].map(path => `./styles/${path}`),
         scripts = maper.scripts[view].map(path => `./scripts/${path}`);
 
-
-    let document = new JSDOM(fs.readFileSync(`./views/${view}.html`)).window.document;
+    let document = new JSDOM(fs.readFileSync(`./views/${view}.html`, 'utf8')).window.document;
     let head = document.head;
     let body = document.body;
-    for (let object of document.getElementsByTagName('object')) {
+    for (let object of document.querySelectorAll('object')) {
         let objectName = object.dataset.object;
         object.insertAdjacentHTML('beforebegin', objects[objectName]);
         object.remove();
