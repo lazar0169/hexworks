@@ -4,6 +4,8 @@ console.log('--- STARTED: ');
 let fs = require('fs');
 var path = require('path');
 const { JSDOM } = require("jsdom");
+var pretty = require('pretty');
+
 var maper = JSON.parse(fs.readFileSync('maper.json', 'utf8'));
 let objects = merge(getFiles('objects'), true);
 let views = fs.readdirSync('views');
@@ -36,7 +38,7 @@ for (let view of views) {
         object.remove();
     }
 
-    fs.writeFileSync(`./${buildFolder}/${view}.html`,
+    fs.writeFileSync(`./${buildFolder}/${view}.html`, pretty(
         `<html>
             <head>
                 ${head.innerHTML}
@@ -46,7 +48,8 @@ for (let view of views) {
                 ${body.innerHTML}
                 <script src="js/${view}.js" ${vendorSafe ? 'async' : 'defer'}></script>
             </body>
-        </html>`);
+        </html>`)
+    );
 
     try {
         js += merge(scripts);
@@ -55,7 +58,7 @@ for (let view of views) {
         css += merge(styles);
         fs.writeFileSync(`./${buildFolder}/css/${view}.css`, css);
     } catch (error) {
-        console.log('Error: Transpilation failed! Please check maper.json');
+        console.log('Error: Transpilation failed! Please check maper.json or admin rights');
         return;
     }
     console.log(`> ${view}`);

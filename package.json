@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/lazar0169/hexworks#readme",
   "devDependencies": {
-    "jsdom": "^11.11.0"
+    "jsdom": "^11.11.0",
+    "pretty": "^2.0.0"
+  },
+  "dependencies": {
+    "npm": "^6.2.0"
   }
 }
