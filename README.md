@@ -1,2 +1,2 @@
 # Hexworks
-Hexanim framework - cms test
+Hexanim framework
