@@ -1,2 +1,2 @@
-# hexworks
+# Hexworks
 Hexanim framework
