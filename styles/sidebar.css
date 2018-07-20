@@ -20,36 +20,31 @@
     margin: 0;
     padding: 0;
     position: relative;
-    width: 100%;
+    width: 0;
     height: 100%;
     display: block;
     background-color: rgb(30, 30, 30);
     color: rgb(150, 150, 150);
-    visibility: hidden
 }
 
 #sidebar.hide {
-    animation-name: slideOut;
-    animation-duration: 0.5s;
+    width: 0;
     visibility: hidden;
 }
 
 #sidebar.show {
-    animation-name: slideIn;
-    animation-duration: 0.5s;
-    visibility: visible;
+    width: 100%;
+    visibility: show;
 }
 
 #sidebar-chosen.hide {
-    animation-name: slideOut;
-    animation-duration: 0.5s;
+    width: 0;
     visibility: hidden;
 }
 
 #sidebar-chosen.show {
-    animation-name: slideIn;
-    animation-duration: 0.5s;
-    visibility: visible;
+    width: 100%;
+    visibility: show;
 }
 
 #sidebar.expand {
@@ -100,8 +95,18 @@
     border: none;
 }
 
-#global-search {
-    background-color: rgb(30, 30, 30);
+#search-button {
+    width: 10%;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-decoration: none;
+    outline: none;
+    background: transparent;
+    text-align: center;
+    border: none;
+    cursor: pointer;
     color: rgb(150, 150, 150);
 }
 
