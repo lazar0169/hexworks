@@ -6,9 +6,9 @@ const sidebar = (function () {
     let menuLink = get('#menu-links');
     let generalSearch = get('#global-search');
     let chosenLink = get('#clicked-link');
-    let chosenWrapper = get('#show-link');
     let linkWrapper = get('#chosen-list');
     let linkList = get('.link-list');
+    let menuChosen = get('#sidebar-chosen');
     let arrayList = Object.keys(data);
 
     window.addEventListener('load', () => {
@@ -49,14 +49,12 @@ const sidebar = (function () {
 
     function chosenList(linkId, linkText) {
         linkWrapper.innerHTML = '';
-        generalSearch.style.visibility = 'hidden';
-        backMenu.style.visibility = 'visible';
-        menuLink.classList.add('hide');
-        chosenWrapper.classList.add('show');
+        menu.classList.add('hide');
+        menuChosen.classList.add('show');
+        menu.classList.remove('show');
+        menuChosen.classList.remove('hide');
         chosenLink.dataset.id = linkId.id;
         chosenLink.innerHTML = linkText;
-        menuLink.classList.remove('show');
-        chosenWrapper.classList.remove('hide');
 
         linkWrapper.innerHTML = `<a class="link-list" data-id="all}">All for ${chosenLink.textContent}</a>`
         for (let count of data[linkId.id]) {
@@ -70,12 +68,10 @@ const sidebar = (function () {
     };
 
     function backToList() {
-        menuLink.classList.add('show');
-        chosenWrapper.classList.add('hide');
-        menuLink.classList.remove('hide');
-        chosenWrapper.classList.remove('show');
-        generalSearch.style.visibility = 'visible';
-        backMenu.style.visibility = 'hidden';
+        menu.classList.add('show');
+        menuChosen.classList.add('hide');
+        menu.classList.remove('hide');
+        menuChosen.classList.remove('show');
     }
     function autocomplete(inp, data) {
 

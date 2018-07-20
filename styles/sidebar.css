@@ -1,12 +1,55 @@
+#sidebar-wrapper {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
 #sidebar {
     margin: 0;
     padding: 0;
     position: relative;
-    width: 20%;
+    width: 100%;
     height: 100%;
     display: block;
     background-color: rgb(30, 30, 30);
     color: rgb(150, 150, 150);
+}
+
+#sidebar-chosen {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: rgb(30, 30, 30);
+    color: rgb(150, 150, 150);
+    visibility: hidden
+}
+
+#sidebar.hide {
+    animation-name: slideOut;
+    animation-duration: 0.5s;
+    visibility: hidden;
+}
+
+#sidebar.show {
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    visibility: visible;
+}
+
+#sidebar-chosen.hide {
+    animation-name: slideOut;
+    animation-duration: 0.5s;
+    visibility: hidden;
+}
+
+#sidebar-chosen.show {
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    visibility: visible;
 }
 
 #sidebar.expand {
@@ -32,10 +75,11 @@
     align-items: center;
 }
 
-#top-head>h2 {
+#team-project {
     width: 80%;
     height: 50%;
     font-size: 2vw;
+    text-align: center;
 }
 
 #top-head>input {
@@ -71,7 +115,6 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    visibility: hidden;
     text-decoration: none;
     outline: none;
     background: transparent;
@@ -81,36 +124,16 @@
     color: rgb(150, 150, 150);
 }
 
-#sidebar-content {
+#menu-links {
     width: 100%;
     height: 70%;
     top: 15%;
-    position: absolute;
-    display: flex;
+    display: block;
     background-color: rgb(30, 30, 30);
-}
-
-#sidebar-content>div {
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
-    float: left;
-}
-
-#menu-links {
-    width: 100%;
-}
-
-#menu-links.hide {
-    animation-name: slideOut;
-    animation-duration: 0.5s;
-    width: 0%;
-}
-
-#menu-links.show {
-    animation-name: slideIn;
-    animation-duration: 0.5s;
-    width: 100%;
+    text-align: center;
 }
 
 .list-management {
@@ -130,41 +153,19 @@
     text-transform: capitalize;
 }
 
-#show-link {
-    margin: 0;
-    padding: 0;
-    display: block;
-    text-align: center;
-    width: 0;
-}
-
-#show-link.hide {
-    animation-name: slideOut;
-    animation-duration: 0.5s;
-    width: 0;
-}
-
-#show-link.show {
-    animation-name: slideIn;
-    animation-duration: 0.5s;
-    width: 100%;
-}
-
-
-#show-link>ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+#chosen-list {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 #chosen-list>a {
     width: 80%;
     border-bottom: 1px solid rgb(150, 150, 150);
-    ;
     cursor: pointer;
 }
 
@@ -205,8 +206,8 @@
     0% {
         width: 100%;
     }
-    25% {
-        width: 100%;
+    75% {
+        width: 0;
     }
     100% {
         width: 0;
