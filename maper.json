@@ -2,13 +2,18 @@
     "scripts": {
         "index": [
             "index.js",
-            "welcome.js"
+            "welcome.js",
+            "settings.js",
+            "data.js",
+            "useful-function.js",
+            "sidebar.js"
         ]
     },
     "styles": {
         "index": [
             "index.css",
-            "welcome.css"
+            "welcome.css",
+            "sidebar.css"
         ]
     }
 }
