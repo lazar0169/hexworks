@@ -4,18 +4,20 @@ const sidebar = (function () {
     let expandMenu = get('#sidebar-expand');
     let menu = get('#sidebar');
     let menuLink = get('#menu-links');
-    let generalSearch = get('#global-search');
     let chosenLink = get('#clicked-link');
     let linkWrapper = get('#chosen-list');
     let linkList = get('.link-list');
     let menuChosen = get('#sidebar-chosen');
+    let appName = get('#team-project');
     let arrayList = Object.keys(data);
+
 
     window.addEventListener('load', () => {
         makeMenu();
     });
     expandMenu.addEventListener('click', () => {
         expand();
+
     });
     backMenu.addEventListener('click', () => {
         backToList();
@@ -39,11 +41,13 @@ const sidebar = (function () {
             menu.classList.add('expand');
             expandMenu.value = ">";
             isExpand = false;
+            appName.innerHTML = "V"
         }
         else {
             menu.classList.remove('expand');
             expandMenu.value = "<";
             isExpand = true;
+            appName.innerHTML = "Vertex manager";
         }
     };
 
@@ -62,7 +66,8 @@ const sidebar = (function () {
         }
         for (let link of linkList) {
             link.addEventListener('click', () => {
-                alert(`ja imam id = ${link.dataset.id}, i trebam prikazati tabelu za ${link.textContent}`);
+                // alert(`ja imam id = ${link.dataset.id}, i trebam prikazati tabelu za ${link.textContent}`);
+                backToList();
             })
         }
     };
