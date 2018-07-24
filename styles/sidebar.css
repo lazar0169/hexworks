@@ -95,6 +95,16 @@
     align-items: center;
 }
 
+.list-name {
+    width: 80%;
+    visibility: visible;
+}
+
+.list-name.hide {
+    width: 0;
+    visibility: hidden;
+}
+
 #sidebar-bottom {
     margin: 0;
     padding: 0;
@@ -128,8 +138,17 @@
 }
 
 #sidebar-navigation.expand {
-    width: 40%;
     visibility: visible;
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    width: 40%;
+}
+
+#sidebar-navigation.hide {
+    visibility: visible;
+    animation-name: slideOut;
+    animation-duration: 0.5s;
+    width: 0;
 }
 
 #navigation-top {
@@ -166,8 +185,8 @@
     align-items: center;
 }
 
-#navigation-content>ul {
-    width: 80%;
+.lists {
+    width: 100%;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -175,13 +194,45 @@
 
 .link-list {
     display: block;
-    width: 100%;
-    text-align: center;
+    width: 80%;
     cursor: pointer;
-    border-bottom: 2px solid rgb(30, 30, 30);
+    margin: 2px;
 }
 
 h3 {
+    width: 80%;
     text-transform: uppercase;
     cursor: default;
+    border-bottom: 2px solid rgb(30, 30, 30);
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+@keyframes slideIn {
+    0% {
+        width: 0;
+    }
+    75% {
+        width: 0;
+    }
+    100% {
+        width: 40%;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        width: 40%;
+    }
+    75% {
+        width: 40%;
+    }
+    100% {
+        width: 0;
+    }
 }

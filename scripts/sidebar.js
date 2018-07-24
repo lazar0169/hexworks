@@ -1,18 +1,20 @@
 const sidebar = (function () {
     let arrayList = Object.keys(data);
-    let menu = get('#sidebar');
-    let sidebarHeader = get('#sidebar-top');
-    let linkWrapper = get('#sidebar-middle');
-    let listMenu = get('.list-management');
-    let expandButton = get('#icon-expand');
-    let navigation = get('#sidebar-navigation')
-    let back = get('#back-button');
-    let chosenLink = get('#chosen-link');
-    let listWrapper = get('#navigation-content');
-    let linkList = get('.link-list');
-    let globalSearch = get('#icon-search');
-    let globalList = get('.lists');
-    let logoWrapper = get('#sidebar-bottom');
+    let menu = $$('#sidebar');
+    let sidebarHeader = $$('#sidebar-top');
+    let linkWrapper = $$('#sidebar-middle');
+    let listMenu = $$('.list-management');
+    let expandButton = $$('#icon-expand');
+    let navigation = $$('#sidebar-navigation')
+    let back = $$('#back-button');
+    let chosenLink = $$('#chosen-link');
+    let listWrapper = $$('#navigation-content');
+    let linkList = $$('.link-list');
+    let globalSearch = $$('#icon-search');
+    let globalList = $$('.lists');
+    let logoWrapper = $$('#sidebar-bottom');
+    let listName = $$('.list-name');
+    let iconList = $$('.icon-list');
 
 
 
@@ -25,6 +27,8 @@ const sidebar = (function () {
 
     back.addEventListener('click', () => {
         navigation.classList.remove('expand');
+        navigation.classList.add('hide');
+
 
     });
 
@@ -32,12 +36,13 @@ const sidebar = (function () {
         chosenLink.innerHTML = "Search";
         makeLinks();
         navigation.classList.add('expand');
+        navigation.classList.remove('hide');
 
     });
 
     function makeMenu() {
         for (let count of arrayList) {
-            linkWrapper.innerHTML += `<li class="list-management" data-id="${count}">${count}</li>`
+            linkWrapper.innerHTML += `<div class="list-management" data-id="${count}"><span class="mdi mdi-magnify"></span><div class="list-name">${count}</div></div>`
         }
         for (let list of listMenu) {
             list.addEventListener('click', () => {
@@ -45,6 +50,7 @@ const sidebar = (function () {
                 chosenLink.innerHTML = list.textContent;
                 makeLinks(list.dataset.id);
                 navigation.classList.add('expand');
+                navigation.classList.remove('hide');
             })
         }
     };
@@ -52,13 +58,25 @@ const sidebar = (function () {
         if (isExpand) {
             menu.classList.add('expand');
             sidebarHeader.classList.add('expand');
-            logoWrapper.classList.add('expand')
+            logoWrapper.classList.add('expand');
+            for (let list of listName) {
+                list.classList.add('hide');
+            }
+            for (let list of listMenu) {
+                list.classList.add('center');
+            }
             isExpand = false;
         }
         else {
             menu.classList.remove('expand');
             sidebarHeader.classList.remove('expand');
             logoWrapper.classList.remove('expand');
+            for (let list of listName) {
+                list.classList.remove('hide');
+            }
+            for (let list of listMenu) {
+                list.classList.remove('center');
+            }
             isExpand = true;
         }
 
@@ -74,7 +92,7 @@ const sidebar = (function () {
         }
         else {
             for (let list of arrayList) {
-                listWrapper.innerHTML += `<ul class="lists" data-id=${list}><h3>${list}</h3></ul>`
+                listWrapper.innerHTML += `<div class="lists" data-id=${list}><h3>${list}</h3></div>`
             }
             for (let list in arrayList) {
                 for (let count of data[arrayList[list]]) {
@@ -86,6 +104,7 @@ const sidebar = (function () {
             link.addEventListener('click', () => {
                 alert(`ja imam id = ${link.dataset.id}, i trebam prikazati tabelu za ${link.textContent} i da vratim menu`);
                 navigation.classList.remove('expand');
+                navigation.classList.add('hide');
             })
         }
     };
