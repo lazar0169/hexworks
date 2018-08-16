@@ -12,6 +12,15 @@
     width: 64px;
 }
 
+/* 
+
+EXAMPLE: 
+This is a test of not used style 
+Id "hexagon" doesn't exist, therefore it is not needed 
+Script build.js should remove any unused style rules 
+
+*/
+
 #hexagon {
     font-size: 2.5vw;
 }
