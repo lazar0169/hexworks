@@ -46,11 +46,11 @@ for (let view of views) {
         `<html>
             <head>
                 ${head.innerHTML}
-                <script src="js/${view}.js" ${vendorSafe ? 'async' : 'defer'}></script>
                 <link rel="stylesheet" href="css/${view}.css">
             </head>
             <body>
                 ${body.innerHTML}
+                <script src="js/${view}.js" ${vendorSafe ? 'async' : 'defer'}></script>
             </body>
         </html>`);
 
